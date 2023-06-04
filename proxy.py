@@ -36,4 +36,6 @@ class PaymentProxy:
         resp = QueryResult()
         resp.success = result.get("alipay_trade_query_response").get("code") == "10000"
         resp.third_party_id = result.get("alipay_trade_query_response").get("trade_no")
+        resp.msg = result.get("alipay_trade_query_response").get("msg")
+        resp.sub_msg = result.get("alipay_trade_query_response").get("sub_msg", "")
         return resp
