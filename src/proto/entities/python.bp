@@ -1,0 +1,33 @@
+#!/bin/bash
+ipath="."
+
+function walk_proto() {
+    include_path=()
+    for d in `find ${1}`
+    do
+        if [[ $d = $1 ]];then
+            continue
+        elif [[ -f $d ]];then
+             if [[ ${d##*.} = "proto" ]];then
+                c="protoc $d --python_out=. -I${ipath}"
+                for inc_path in ${include_path[@]};do
+                    if [ -d $inc_path ];then
+                        c="$c -I${inc_path}"
+                    fi
+                done
+                `$c`
+                echo "$c ==> $?"
+            fi
+        elif [[ -d $d ]];then
+            walk_proto $d
+        fi
+    done
+}
+
+paths=(".")
+for path in ${paths[@]}
+do
+    if [ -d $path ];then
+       walk_proto $path
+    fi
+done
