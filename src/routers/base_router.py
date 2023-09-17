@@ -2,6 +2,9 @@ import time
 from fastapi import APIRouter
 
 from errors import PopupError
+from submodules.utils.logger import Logger
+
+logger = Logger()
 
 
 class BaseRouter(APIRouter):
@@ -21,7 +24,6 @@ class BaseRouter(APIRouter):
             if member.endswith("POST"):
                 prefix = "_".join(member.split("_")[:-1])
                 self.post(f"/{prefix}")(getattr(self, member))
-        setattr(BaseRouter, "__setattr__", self.__setattr)
 
     async def create(self, request):
         raise PopupError("Method Not Supported")
@@ -38,5 +40,6 @@ class BaseRouter(APIRouter):
     async def get_list(self, request):
         raise PopupError("Method Not Supported")
 
-    def __setattr(self, name, value):
-        raise Exception("Not Supported")
+    def __setattr__(self, name, value):
+        super().__setattr__(name, value)
+        logger.warning(f"Every {name} will be shared by requests!!!")

@@ -1,1 +1,0 @@
-#+SETUPFILE: ~/.emacs.d/org-templates/template.org

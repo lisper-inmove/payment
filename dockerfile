@@ -1,4 +1,3 @@
-# FROM mh.com:8890/test/task-distribute:v1.0
 FROM mh.com:8890/test/fastapi-base:v1.0
 
 WORKDIR /app
