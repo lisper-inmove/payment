@@ -7,42 +7,6 @@ from unify_response import UnifyResponse
 logger = Logger()
 
 
-# @router.post("/create")
-# async def create_demo(
-#         request: api_pb.DemoCreateRequest
-# ):
-#     manager = DemoManager()
-#     demo = manager.create_demo(request)
-#     manager.add_demo(demo)
-#     response = api_pb.DemoCreateResponse()
-#     response.id = demo.id
-#     response.name = demo.name
-#     return UnifyResponse.R(response)
-
-# @router.post("/delete")
-# async def delete_demo(
-#         request: api_pb.DemoCreateRequest
-# ):
-#     manager = DemoManager()
-#     demo = manager.create_demo(request)
-#     manager.add_demo(demo)
-#     response = api_pb.DemoCreateResponse()
-#     response.id = demo.id
-#     response.name = demo.name
-#     return UnifyResponse.R(response)
-
-# @router.post("/get")
-# async def query_demo(
-#         request: api_pb.DemoQueryRequest
-# ):
-#     manager = DemoManager()
-#     demo = manager.get_demo(request)
-#     response = api_pb.DemoCommonResponse()
-#     response.id = demo.id
-#     response.name = demo.name
-#     return UnifyResponse.R(response)
-
-
 class DemoRouter(BaseRouter):
 
     def __init__(self, *args, **kargs):
