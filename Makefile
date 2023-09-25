@@ -7,7 +7,7 @@ entity:
 	cd src/proto && make entity
 
 build:
-	sudo docker build . -t mh.com:8890/test/demo :v1.0
+	sudo docker build . -t mh.com:8890/test/demo:v1.0
 	sudo docker push mh.com:8890/test/demo:v1.0
 restart:
 	kubectl delete -f k8s/deployment.yaml

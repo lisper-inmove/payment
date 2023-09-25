@@ -37,7 +37,7 @@ class BaseRouter(APIRouter):
     async def query(self, request):
         raise PopupError("Method Not Supported")
 
-    async def get_list(self, request):
+    async def list(self, request):
         raise PopupError("Method Not Supported")
 
     def __setattr__(self, name, value):
