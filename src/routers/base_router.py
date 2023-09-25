@@ -19,10 +19,10 @@ class BaseRouter(APIRouter):
         members = dir(self)
         for member in members:
             if member.endswith("GET"):
-                prefix = "_".join(member.split("_")[:-1])
+                prefix = "-".join(member.split("_")[:-1])
                 self.get(f"/{prefix}")(getattr(self, member))
             if member.endswith("POST"):
-                prefix = "_".join(member.split("_")[:-1])
+                prefix = "-".join(member.split("_")[:-1])
                 self.post(f"/{prefix}")(getattr(self, member))
 
     async def create(self, request):

@@ -53,7 +53,7 @@ class RouterHelper:
             if value.__name__ == "BaseRouter":
                 continue
             snake_name = self.pattern.sub(r'_\1', value.__name__).lower()
-            prefix = "_".join(snake_name.split("_")[:-1])
+            prefix = "-".join(snake_name.split("_")[:-1])
             router = value(prefix=f"/{prefix}")
             r = module.__dict__.get('router')
             self.app.include_router(router)
