@@ -8,12 +8,12 @@ class BaseManager(Base):
     def create_obj(self, cls):
         obj = cls()
         obj.id = Misc.uuid()
-        if hasattr(obj, 'createTime'):
-            obj.createTime = IDate.now_timestamp()
-        if hasattr(obj, 'updateTime'):
-            obj.updateTime = IDate.now_timestamp()
+        if hasattr(obj, 'create_time'):
+            obj.create_time = IDate.now_timestamp()
+        if hasattr(obj, 'update_time'):
+            obj.update_time = IDate.now_timestamp()
         return obj
 
     def update_obj(self, obj):
-        if hasattr(obj, 'updateTime'):
-            obj.updateTime = IDate.now_timestamp()
+        if hasattr(obj, 'update_time'):
+            obj.update_time = IDate.now_timestamp()

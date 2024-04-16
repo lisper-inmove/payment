@@ -1,0 +1,7 @@
+for protofile in *.proto; do
+  # Extract the filename without the extension
+  filename="${protofile%.*}"
+
+  # Execute the command for the current file
+  npx pbjs --ts ./"$filename.ts" "$protofile"
+done

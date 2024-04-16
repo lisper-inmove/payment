@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+message PrepayRequest {
+    string id = 1;
+    int32 pay_fee = 2;
+    string pay_method = 3;
+}
+
+message PrepayResponse {
+    string qrcode_url = 1;
+    string trade_id = 2;
+}
+
+message TradeQueryRequest {
+    string id = 1;
+}
+
+message TradeQueryResponse {
+    string status = 1;
+    string msg = 3;
+    bool is_pay_success = 5;
+}

@@ -16,3 +16,9 @@ class PopupError(Error):
 
     def __init__(self, msg):
         super().__init__(code=9, msg=msg)
+
+
+class SilentError(Error):
+
+    def __init__(self, msg):
+        super().__init__(code=10, msg=msg)

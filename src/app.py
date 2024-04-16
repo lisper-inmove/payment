@@ -7,6 +7,7 @@ import inspect
 from fastapi import APIRouter
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from submodules.utils.logger import Logger
 from submodules.utils.sys_env import SysEnv
@@ -61,6 +62,14 @@ class RouterHelper:
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://192.168.3.124:9000"],  # 允许的源列表
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许的方法
+    allow_headers=["*"],  # 允许的头部
+)
 
 
 @app.middleware("http")

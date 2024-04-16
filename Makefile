@@ -1,8 +1,14 @@
+export APP_PRIVATE_KEY_FILE=/home/inmove/payment-files/app-private-key.txt
+export ALIPAY_PUBLIC_KEY_FILE=/home/inmove/payment-files/alipay-public-key.RSA2.txt
+export ALIPAY_APPID=2021001102655667
+
+
 dev:
-	make api && make entity && export PYTHONPATH=`pwd`/src && source bin/util.sh && APPROOT=`pwd`/src uvicorn src.app:app --reload
+	make api && make entity && export PYTHONPATH=`pwd`/src && source bin/util.sh && APPROOT=`pwd`/src uvicorn --host 0.0.0.0 src.app:app --reload
 
 api:
 	cd src/proto && make api-python
+	cd src/proto && make api-typescript
 entity:
 	cd src/proto && make entity
 
