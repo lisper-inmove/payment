@@ -7,3 +7,5 @@ proto/*.ts
 *.ts
 *_pb2.py
 *.~undo-tree~
+alipay-public-key.RSA2.txt
+app-private-key.txt
