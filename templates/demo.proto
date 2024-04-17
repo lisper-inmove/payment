@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-message Demo {
-  string id = 1;
-  string name = 2;
-  int64 createTime = 3;
-  int64 updateTime = 4;
-}

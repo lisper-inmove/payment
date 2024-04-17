@@ -8,4 +8,6 @@ ENV API_VERESION=v1.0 \
 
 COPY . .
 
+RUN pip install -r require.txt
+
 CMD ["/bin/bash", "bin/start.sh"]

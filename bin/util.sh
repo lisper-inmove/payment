@@ -17,6 +17,9 @@ export MONGODB_SERVER_ADDRESS=192.168.3.124
 export MONGODB_PORT=27018
 # 服务启动环境
 export RUNTIME_ENVIRONMENT=test
+export APP_PRIVATE_KEY_FILE=app-private-key.txt
+export ALIPAY_PUBLIC_KEY_FILE=alipay-public-key.RSA2.txt
+export ALIPAY_APPID=2021001102655667
 
 export PYTHONPATH=`pwd`/src
 export APPROOT=`pwd`/src
