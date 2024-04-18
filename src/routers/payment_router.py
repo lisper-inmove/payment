@@ -36,7 +36,7 @@ class PaymentRouter(BaseRouter):
 
     async def alipay_f2f_prepay(self, trade):
         obj = AlipayF2F()
-        result = obj.prepay(trade.id, trade.pay_fee)
+        result = await obj.prepay(trade.id, trade.pay_fee)
         resp = api_payment.PrepayResponse()
         resp.qrcode_url = result.get("alipay_trade_precreate_response").get("qr_code")
         resp.trade_id = trade.id
@@ -57,7 +57,7 @@ class PaymentRouter(BaseRouter):
 
     async def alipay_trade_query(self, trade):
         obj = AlipayPayment()
-        result = obj.query(trade.id)
+        result = await obj.query(trade.id)
         resp = api_payment.TradeQueryResponse()
         resp.status = result.get("alipay_trade_query_response").get(
             "trade_status", "")
@@ -65,5 +65,7 @@ class PaymentRouter(BaseRouter):
         resp.is_pay_success = result.get("alipay_trade_query_response").get(
             "trade_status") == "TRADE_SUCCESS"
         trade.trade_info = json.dumps(result)
+        if resp.is_pay_success:
+            trade.status = payment_pb.Trade.Status.SUCCESS
         await self.trade_manager.update_trade(trade)
         return resp

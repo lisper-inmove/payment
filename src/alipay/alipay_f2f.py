@@ -3,7 +3,7 @@
 """
 
 from submodules.utils.logger import Logger
-from submodules.utils.network_helper import NetworkHelper
+from submodules.utils.network_helper_v2 import NetworkHelper
 
 from .alipay_payment import AlipayPayment
 
@@ -17,7 +17,7 @@ class AlipayF2F(AlipayPayment):
             subject = "当面付"
         self.subject = subject
 
-    def prepay(self, out_order_no, pay_fee):
+    async def prepay(self, out_order_no, pay_fee):
         params = self.create_common_params()
         params.update({
             "method": "alipay.trade.precreate",
@@ -32,5 +32,5 @@ class AlipayF2F(AlipayPayment):
             "sign": self.build_signed_string(params)
         })
         url = f"{self.ALIPAY_GATEWAY}?charset=utf-8"
-        result = NetworkHelper().do_post_with_data(url, params)
+        result = await NetworkHelper().do_post_with_data(url, params)
         return result

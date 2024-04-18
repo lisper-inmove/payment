@@ -8,7 +8,7 @@ from Cryptodome.Signature import PKCS1_v1_5 as CryptodomePKCS1_v1_5
 from submodules.utils.idate import IDate
 from submodules.utils.sys_env import SysEnv
 from submodules.utils.logger import Logger
-from submodules.utils.network_helper import NetworkHelper
+from submodules.utils.network_helper_v2 import NetworkHelper
 
 from payment import Payment
 
@@ -23,7 +23,7 @@ class AlipayPayment(Payment):
     ALIPAY_PUBLIC_KEY_STRING = open(SysEnv.get("ALIPAY_PUBLIC_KEY_FILE")).read()
     APPID = SysEnv.get("ALIPAY_APPID")
 
-    def query(self, out_order_no):
+    async def query(self, out_order_no):
         params = self.create_common_params()
         params.update({
             "method": "alipay.trade.query",
@@ -35,7 +35,7 @@ class AlipayPayment(Payment):
             "sign": self.build_signed_string(params)
         })
         url = f"{self.ALIPAY_GATEWAY}?charset=utf-8"
-        result = NetworkHelper().do_post_with_data(url, params)
+        result = await NetworkHelper().do_post_with_data(url, params)
         return result
 
     def create_common_params(self):
